@@ -1,10 +1,24 @@
 import { minimax } from "./minimax";
 
+export interface IState {
+	board: ReadonlyArray<Mark>;
+	turn: Mark;
+}
+
+export const enum Mark {
+	Empty,
+	X,
+	O,
+	Draw,
+}
+
+export type Board = Mark[];
+
 export const getAvailableMoves = (board: Board) => {
 	return board.map((s, i) => (s === Mark.Empty ? i : -1)).filter((i) => i !== -1);
 };
 
-export const isDraw = (board: Board) => board.every((s) => s != Mark.Empty);
+export const isDraw = (board: Board) => board.every((s) => s !== Mark.Empty);
 
 export const isWinner = (board: Board, n: number, index: number, turn: Mark) => {
 	const row = Math.floor(index / n),
@@ -40,20 +54,6 @@ export const checkAllRowsAndCols = (board: Board, n: number, turn: Mark) => {
 };
 
 export const getAt = (board: Board, n: number, row: number, col: number) => board[row * n + col];
-
-export interface IState {
-	board: ReadonlyArray<Mark>;
-	turn: Mark;
-}
-
-export const enum Mark {
-	Empty,
-	X,
-	O,
-	Draw,
-}
-
-export type Board = Mark[];
 
 export class Game {
 	readonly #board: Board;
