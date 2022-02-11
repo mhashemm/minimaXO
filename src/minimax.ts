@@ -11,10 +11,11 @@ export const minimax = (
 	n: number,
 	turn: Mark,
 	alpha: number = Number.MIN_SAFE_INTEGER,
-	beta: number = Number.MAX_SAFE_INTEGER
+	beta: number = Number.MAX_SAFE_INTEGER,
+	depth: number = 0
 ): [bestScore: number, bestMove: number] => {
-	if (isTurnWinner(board, n, Mark.X)) return [1, -1];
-	if (isTurnWinner(board, n, Mark.O)) return [-1, -1];
+	if (isTurnWinner(board, n, Mark.X)) return [1000 - depth, -1];
+	if (isTurnWinner(board, n, Mark.O)) return [depth - 1000, -1];
 	if (isDraw(board)) return [0, -0];
 
 	const maximizing = turn === Mark.X;
@@ -24,7 +25,7 @@ export const minimax = (
 	const moves = getAvailableMoves(board);
 	for (const move of moves) {
 		board[move] = turn;
-		const [score] = minimax(board, n, turn === Mark.X ? Mark.O : Mark.X, alpha, beta);
+		const [score] = minimax(board, n, turn === Mark.X ? Mark.O : Mark.X, alpha, beta, depth + 1);
 		board[move] = Mark.Empty;
 		bestMove = compare(score, bestScore) ? move : bestMove;
 		bestScore = compare(score, bestScore) ? score : bestScore;
