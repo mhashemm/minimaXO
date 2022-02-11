@@ -1,38 +1,86 @@
-.App {
-  text-align: center;
+.square {
+	padding: 10px;
+	background-color: #1f3540;
+	border-radius: 10px;
+	box-shadow: 0px 3px 1px #0f202a;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.main > div:not(:last-child) {
+	margin-bottom: 32px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.info {
+	display: flex;
+	align-items: stretch;
+	font-size: 18px;
+	color: #a8bec9;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.info > * {
+	margin-right: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.info button {
+	font-size: inherit;
+	border: none;
+	color: #192a32;
+	background-color: #a8bfc7;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.turn {
+	display: flex;
+	align-items: center;
+}
+.turn span {
+	margin-left: 5px;
+}
+
+.board {
+	align-self: center;
+}
+
+.gridsize {
+	display: flex;
+}
+
+.gridsize span {
+	align-self: center;
+}
+
+.gridsize input {
+	font-size: inherit;
+	border: none;
+	width: 50px;
+	color: inherit;
+	margin-left: 10px;
+}
+.score {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.score {
+	font-size: 18px;
+	color: #192a32;
+}
+
+.score > div:not(:last-child) {
+	margin-right: 10px;
+}
+
+.score .x {
+	background-color: #31c4be;
+}
+.score .o {
+	background-color: #f2b237;
+}
+
+.score .draw {
+	background-color: #a8bfc7;
 }
